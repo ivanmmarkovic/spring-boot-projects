@@ -55,7 +55,7 @@ public class UserController {
 			if(user.getUsername() != null)
 				optionalUser.setUsername(user.getUsername());
 			if(user.getEmail() != null)
-				optionalUser.setUsername(user.getEmail());
+				optionalUser.setEmail(user.getEmail());
 			this.userRepository.save(optionalUser);
 			return new ResponseEntity<>(optionalUser, HttpStatus.OK);
 		}
