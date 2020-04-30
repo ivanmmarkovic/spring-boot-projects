@@ -70,11 +70,6 @@ public class UserController {
 		this.userRepository.deleteById(id);
 		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
-	
-	@GetMapping("/userstest/{data}")
-	public ResponseEntity<User> getData(@PathVariable String data){
-		this.userRepository.deleteWithUsername(data);
-		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-	}
+
 }
 
