@@ -30,9 +30,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("FROM User WHERE email LIKE %?#{[0]}%")
 	public List<User> getAllWithEmail(String email);
 	
-	@Query(value = "DELETE FROM user WHERE username = :username", nativeQuery= true)
+	@Query("DELETE User WHERE username = :username")
 	@Modifying
 	@Transactional
 	public void deleteWithUsername(@Param("username") String username);
-	
+	/*
+	@Query(value = "DELETE FROM user WHERE username = :username", nativeQuery = true)
+	@Modifying
+	@Transactional
+	public void deleteWithUsername(@Param("username") String username);
+	*/
 }
