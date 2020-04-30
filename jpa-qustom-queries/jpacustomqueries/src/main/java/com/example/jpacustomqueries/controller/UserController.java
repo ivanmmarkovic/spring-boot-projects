@@ -73,7 +73,8 @@ public class UserController {
 	
 	@GetMapping("/userstest/{data}")
 	public ResponseEntity<User> getData(@PathVariable String data){
-		return new ResponseEntity<>(this.userRepository.findByUsername(data), HttpStatus.OK);
+		this.userRepository.deleteWithUsername(data);
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
 }
 
