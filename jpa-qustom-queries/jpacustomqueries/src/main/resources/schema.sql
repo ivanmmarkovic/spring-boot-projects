@@ -1,7 +1,0 @@
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
-	`id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`username` VARCHAR(20) NOT NULL,
-	`email` VARCHAR(50)
-);
