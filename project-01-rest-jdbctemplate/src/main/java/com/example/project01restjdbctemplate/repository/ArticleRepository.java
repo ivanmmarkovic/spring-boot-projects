@@ -1,10 +1,13 @@
 package com.example.project01restjdbctemplate.repository;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -19,6 +22,16 @@ public class ArticleRepository {
 	public ArticleRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+
+	private RowMapper<Article> rowMapper = (ResultSet rs, int rowNumber) -> {
+		Article article = new Article();
+		article.setId(rs.getInt("id"));
+		article.setTitle(rs.getString("title"));
+		article.setBody(rs.getString("body"));
+		article.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+		article.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+		return article;
+	};
 	
 	public Article create(Article article) {
 		
@@ -39,10 +52,14 @@ public class ArticleRepository {
 		
 	}
 	
-//	public Article find(long id) {
-//		String sql = "SELECT * FROM `articles` WHERE `id`=? LIMIT 1";
-//		this.jdbcTemplate
-//	}
+	public Article findById(int id) {
+		Article article =  this.jdbcTemplate.queryForObject("SELECT * FROM `articles` WHERE `id` = ?", this.rowMapper, id);
+		return article;
+	}
+	
+	public List<Article> findAll() {
+		return this.jdbcTemplate.query("SELECT * FROM `articles`", this.rowMapper);
+	}
 	
 	public Article update(int id, Article article) {
 		String sql = "UPDATE `articles` SET `title`=?, `body`=?, `updated_at`=? WHERE `id`=?";

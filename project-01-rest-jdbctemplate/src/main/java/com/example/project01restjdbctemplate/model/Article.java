@@ -1,12 +1,11 @@
 package com.example.project01restjdbctemplate.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Article {
 	
 	
-	private long id;
+	private int id;
 	private String title;
 	private String body;
 	private LocalDateTime createdAt;
