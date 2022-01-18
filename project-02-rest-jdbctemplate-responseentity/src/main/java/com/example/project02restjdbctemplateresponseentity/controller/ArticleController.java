@@ -2,6 +2,8 @@ package com.example.project02restjdbctemplateresponseentity.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,28 +25,32 @@ public class ArticleController {
 	}
 
 	@PostMapping("/articles")
-	public Article create(@RequestBody Article article) {
-		return this.articleRepository.create(article);
+	public ResponseEntity<Article> create(@RequestBody Article article) {
+		Article createdArticle = this.articleRepository.create(article);
+		return new ResponseEntity<>(createdArticle, HttpStatus.CREATED);
 	} 
 	
 	@GetMapping("/articles/{id}")
-	public Article findbyId(@PathVariable int id) {
-		return this.articleRepository.findById(id);
+	public ResponseEntity<Article> findbyId(@PathVariable int id) {
+		Article article = this.articleRepository.findById(id);
+		return new ResponseEntity<>(article, HttpStatus.OK);
 	}
 	
 	@GetMapping("/articles")
-	public List<Article> findAll(){
-		return this.articleRepository.findAll();
+	public ResponseEntity<List<Article>> findAll(){
+		List<Article> articles = this.articleRepository.findAll();
+		return new ResponseEntity<>(articles, HttpStatus.OK);
 	}
 	
 	@PatchMapping("/articles/{id}")
-	public Article update(@PathVariable int id, @RequestBody Article article) {
-		return this.articleRepository.update(id, article);
+	public ResponseEntity<Article> update(@PathVariable int id, @RequestBody Article article) {
+		Article updatedArticle = this.articleRepository.update(id, article);
+		return new ResponseEntity<>(updatedArticle, HttpStatus.OK);
 	}
 	
-	public Article delete(@PathVariable int id) {
+	public ResponseEntity<Article> delete(@PathVariable int id) {
 		this.articleRepository.delete(id);
-		return null;
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
 	
 }
