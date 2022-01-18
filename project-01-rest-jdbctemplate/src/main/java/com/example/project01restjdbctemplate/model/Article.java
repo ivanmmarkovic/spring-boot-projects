@@ -1,5 +1,6 @@
 package com.example.project01restjdbctemplate.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Article {
@@ -8,19 +9,18 @@ public class Article {
 	private long id;
 	private String title;
 	private String body;
-	private Date createdAt;
-	private Date updatedAt;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	public Article() {
-		// TODO Auto-generated constructor stub
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = this.createdAt;
 	}
 
-	public Article(String title, String body, Date createdAt, Date updatedAt) {
-		super();
+	public Article(String title, String body) {
+		this();
 		this.title = title;
 		this.body = body;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 
 	public long getId() {
@@ -47,19 +47,19 @@ public class Article {
 		this.body = body;
 	}
 
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 	
