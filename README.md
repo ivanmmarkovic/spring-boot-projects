@@ -1,4 +1,4 @@
-# spring-boot-example-projects
+# spring-boot-projects
 
 Repository for Spring Boot examples.
 
