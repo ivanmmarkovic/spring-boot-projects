@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +39,16 @@ public class ProfessorController {
 	@GetMapping("/professors/{id}")
 	public ResponseEntity<Professor> findAll(@PathVariable int id) {
 		Optional<Professor> professor = this.professorRepository.findById(id);
-		// TODO: Handle exception if not found
+		// TODO Handle exception if not found
 		return new ResponseEntity<>(professor.get(), HttpStatus.OK);
+	}
+	
+	@PutMapping("/professors/{id}")
+	public ResponseEntity<Professor> update(@PathVariable int id, @RequestBody Professor professor){
+		professor.setId(id);
+		Professor professorUpdated = this.professorRepository.save(professor);
+		return new ResponseEntity<>(professorUpdated, HttpStatus.OK);
+		
 	}
 	
 }
