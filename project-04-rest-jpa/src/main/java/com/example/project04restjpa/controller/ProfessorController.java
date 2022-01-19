@@ -1,10 +1,12 @@
 package com.example.project04restjpa.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +33,13 @@ public class ProfessorController {
 	public ResponseEntity<List<Professor>> findAll() {
 		List<Professor> professors = this.professorRepository.findAll();
 		return new ResponseEntity<>(professors, HttpStatus.OK);
+	}
+	
+	@GetMapping("/professors/{id}")
+	public ResponseEntity<Professor> findAll(@PathVariable int id) {
+		Optional<Professor> professor = this.professorRepository.findById(id);
+		// TODO: Handle exception if not found
+		return new ResponseEntity<>(professor.get(), HttpStatus.OK);
 	}
 	
 }
