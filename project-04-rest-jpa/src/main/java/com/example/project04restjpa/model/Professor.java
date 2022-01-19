@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "professors")
@@ -13,7 +15,11 @@ public class Professor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@Size(min = 3, max = 15, message = "First name must be at least 3 characters long, max 15")
 	private String firstName;
+	
+	@Size(min = 3, max = 15, message = "First name must be at least 3 characters long, max 15")
 	private String lastName;
 	
 	public Professor() {
