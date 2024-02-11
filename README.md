@@ -1,6 +1,6 @@
 # spring-boot-projects
 
-Repository for Spring Boot examples.
+Repository for Spring Boot projects.
 
 Every folder contains Spring Boot Maven project and *Description.md* file.
 
