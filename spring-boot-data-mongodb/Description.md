@@ -7,7 +7,7 @@ Method | URL | description
 POST      |/api/articles                            | create article
 GET       |/api/articles                            | get all articles             
 GET       |/api/articles/{id}                       | get article 
-PATCH     |/api/articles/{id}                       | update article               
+PUT       |/api/articles/{id}                       | update article               
 DELETE    |/api/articles/{id}                       | delete article            
 
 
@@ -19,8 +19,7 @@ DELETE    |/api/articles/{id}                       | delete article
 }
 ```
 
-### PATCH
-- you can update only title or body, or both
+### PUT
 ```
 {
     "title": "new title",
@@ -28,6 +27,3 @@ DELETE    |/api/articles/{id}                       | delete article
 }
 ```
 
-## TODO
-- error handling
-- validate input data
