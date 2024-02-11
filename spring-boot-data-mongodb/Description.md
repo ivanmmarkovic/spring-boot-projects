@@ -10,6 +10,8 @@ GET       |/api/articles/{id}                       | get article
 PUT       |/api/articles/{id}                       | update article               
 DELETE    |/api/articles/{id}                       | delete article            
 
+# Start MongoDb
+- docker-compose up --build
 
 ### POST 
 ```
